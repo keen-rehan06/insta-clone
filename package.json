@@ -1,0 +1,31 @@
+{
+  "name": "instagramclone",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000i\u0000n\u0000s\u0000t\u0000a\u0000-\u0000c\u0000l\u0000o\u0000n\u0000e\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keen-rehan06/insta-clone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/keen-rehan06/insta-clone/issues"
+  },
+  "homepage": "https://github.com/keen-rehan06/insta-clone#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.4",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.2.0",
+    "path": "^0.12.7"
+  }
+}
