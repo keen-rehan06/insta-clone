@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/keen-rehan06/insta-clone/issues"
   },
@@ -27,5 +27,8 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.2.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
   }
 }
