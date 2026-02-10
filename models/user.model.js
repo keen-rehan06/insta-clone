@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
       type:String,
         required:true
     },
+    date:{
+        type:Date,
+        default:Date.now()
+    },
     picture:{
         type:String
     },
@@ -27,10 +31,6 @@ const userSchema = new mongoose.Schema({
     bio:{
         type:String
     },
-    stories:[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"story"
-    }],
     saved:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"save"
