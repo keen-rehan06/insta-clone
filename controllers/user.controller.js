@@ -88,3 +88,13 @@ export const createPost = async (req, res) => {
   }
 };
 
+export const updateProfile = async(req,res) => {
+try {
+  const {picture,username,name} = req.body;
+  const newUser = {picture,username,name}
+  const user = await userModel.findOneAndUpdate({_id:req.user._id},newUser,{ new: true })
+  res.redirect("/profile")
+} catch (error) {
+  
+}  
+}
