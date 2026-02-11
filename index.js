@@ -30,7 +30,7 @@ app.set("view engine","ejs")
 app.use("/user",userRoute)
 
 app.get("/",function(req,res){
-    res.send("Hello World!!")
+    res.render("login")
 })
 
 app.listen(3000,function(){
