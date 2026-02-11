@@ -43,7 +43,7 @@ export const loggedInUser = async (req, res) => {
         secure: true,
         sameSite: "none",
       });
-      res.redirect("/feed");
+      res.render("profile");
     });
   } catch (error) {
     res.status(500).send({ message: "Error", data: error });
@@ -73,14 +73,14 @@ export const createPost = async (req, res) => {
     const findUser = await userModel.findOne({ email: req.user.email });
     if (!findUser) return res.send("User not found");
 
-    await postModel.create({
+    const createdPost = await postModel.create({
       user: findUser._id,
       image: req.file.filename,
       caption,
     });
 
     const posts = await postModel.find().populate("user");
-    res.render("feed", posts );
+    res.render("feed", { createdPost} );
 
   } catch (error) {
     console.log(error);

@@ -54,14 +54,10 @@ src="https://images.unsplash.com/photo-1544005313-94ddf0286df2">
 </div>
 <p class="text-xs text-center mt-1">sarah</p>
 </div>
-
 </div>
-
-<% posts.forEach((post) => { %>
+<% posts.reverse().forEach((post) => { %>
 <div class="mb-20">
 <div class="mt-10 w-full">
-
-<!-- User Info -->
 <div class="px-4 flex items-center gap-3">
 <div class="w-10 h-10 rounded-full overflow-hidden">
 <img class="w-full h-full object-cover"
@@ -69,15 +65,17 @@ src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
 </div>
 <div>
 <h4 class="text-sm font-semibold"><%= post.user.username %></h4>
-<h6 class="text-xs opacity-50">Pune, India</h6>
+<h6 class="text-xs opacity-50">Nagpur, Maharashtra</h6>
 </div>
 </div>
-
-<div class="relative w-full h-96 mt-4 overflow-hidden">
-<img class="w-full h-full object-cover"
-src="/images/<%= post.image %>">
+<div class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
+  <div class="relative w-full aspect-square">
+    <img 
+      src="/images/<%= post.image %>"
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+  </div>
 </div>
-
 <div class="w-full px-4 flex justify-between items-center text-2xl mt-2">
 <div class="flex gap-4">
 <i class="ri-heart-3-line"></i>
@@ -86,13 +84,37 @@ src="/images/<%= post.image %>">
 </div>
 <i class="ri-bookmark-line"></i>
 </div>
-
-<!-- Caption -->
 <h2 class="text-sm mt-1 px-4">
 <span class="font-semibold pr-2"><%= post.user.username %></span>
 <%= post.caption %>
 </h2>
 
+</div>
+<div class="fixed bottom-0 left-0 right-0 w-full bg-black border-t border-zinc-800 z-[999]">
+  <div class="flex justify-around items-center py-3 text-2xl text-white">
+
+    <a href="/feed" class="active:scale-90 transition">
+      <i class="ri-home-5-line"></i>
+    </a>
+
+    <a href="/search" class="active:scale-90 transition">
+      <i class="ri-search-line"></i>
+    </a>
+
+    <a href="/create" class="active:scale-90 transition">
+      <i class="ri-add-box-line"></i>
+    </a>
+
+    <a href="/reels" class="active:scale-90 transition">
+      <i class="ri-video-line"></i>
+    </a>
+
+    <a href="/profile" class="active:scale-90 transition">
+      <div class="w-7 h-7 rounded-full overflow-hidden border border-zinc-600">
+        <img src="/images/dp.jpg" class="w-full h-full object-cover">
+      </div>
+    </a>
+  </div>
 </div>
 </div>
 <% }) %>

@@ -38,6 +38,14 @@ app.get("/feed", async (req, res) => {
    res.render("feed", { posts });
 });
 
+app.get("/profile",async(req,res)=>{
+    res.render("profile")
+})
+
+app.get("/edit",function(req,res){
+    
+})
+
 
 app.listen(3000,function(){
     console.log("App is running on port 3000")
