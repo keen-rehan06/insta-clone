@@ -1,4 +1,5 @@
 import userModel from "../models/user.model.js";
+import postModel from "../models/post.model.js";
 import bcrypt from "bcrypt";
 import generateToken from "../config/jwtToken.js";
 
@@ -42,7 +43,7 @@ export const loggedInUser = async (req, res) => {
         secure: true,
         sameSite: "none",
       });
-      res.render("feed")
+      res.redirect("/feed");
     });
   } catch (error) {
     res.status(500).send({ message: "Error", data: error });
@@ -52,12 +53,38 @@ export const loggedInUser = async (req, res) => {
 export const logoutUser = async (req, res) => {
   try {
     res.clearCookie("token", {
-   httpOnly: true,
-   secure: true,
-   sameSite: "none"
-})
-res.status(200).send({ message: "User Logout Successfully!!" });
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+    res.status(200).send({ message: "User Logout Successfully!!" });
   } catch (error) {
     return res.send("Logout failed");
   }
 };
+
+export const createPost = async (req, res) => {
+  try {
+    console.log(req.user);
+    console.log(req.file);
+
+    const {user,image,caption } = req.body;
+
+    const findUser = await userModel.findOne({ email: req.user.email });
+    if (!findUser) return res.send("User not found");
+
+    await postModel.create({
+      user: findUser._id,
+      image: req.file.filename,
+      caption,
+    });
+
+    const posts = await postModel.find().populate("user");
+    res.render("feed", posts );
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: error.message });
+  }
+};
+

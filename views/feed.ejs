@@ -1,9 +1,11 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instagram UI Clone</title>
+<title>Instagram Clone</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet"/>
@@ -13,7 +15,6 @@
 
 <div class="w-full min-h-screen py-5">
 
-<!-- Navbar -->
 <div class="w-full px-4 flex items-center justify-between">
 <img class="w-28 bg-transparent" src="/images/insta.png">
 <div class="flex gap-5 text-2xl">
@@ -22,10 +23,8 @@
 </div>
 </div>
 
-<!-- Stories -->
 <div class="px-3 flex gap-4 overflow-auto mt-6">
 
-<!-- Story -->
 <div class="flex-shrink-0">
 <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 flex items-center justify-center">
 <div class="w-[92%] h-[92%] rounded-full overflow-hidden">
@@ -34,7 +33,7 @@ src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
 </div>
 </div>
 <p class="text-xs text-center mt-1">Rehan</p>
-</div>
+</div> 
 
 <div class="flex-shrink-0">
 <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 flex items-center justify-center">
@@ -58,31 +57,27 @@ src="https://images.unsplash.com/photo-1544005313-94ddf0286df2">
 
 </div>
 
-<!-- Posts -->
+<% posts.forEach((post) => { %>
 <div class="mb-20">
-
-<!-- Post -->
 <div class="mt-10 w-full">
 
-<!-- Post Header -->
+<!-- User Info -->
 <div class="px-4 flex items-center gap-3">
 <div class="w-10 h-10 rounded-full overflow-hidden">
 <img class="w-full h-full object-cover"
 src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
 </div>
 <div>
-<h4 class="text-sm font-semibold">rehan_dev</h4>
+<h4 class="text-sm font-semibold"><%= post.user.username %></h4>
 <h6 class="text-xs opacity-50">Pune, India</h6>
 </div>
 </div>
 
-<!-- Post Image -->
 <div class="relative w-full h-96 mt-4 overflow-hidden">
 <img class="w-full h-full object-cover"
-src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+src="/images/<%= post.image %>">
 </div>
 
-<!-- Options -->
 <div class="w-full px-4 flex justify-between items-center text-2xl mt-2">
 <div class="flex gap-4">
 <i class="ri-heart-3-line"></i>
@@ -92,19 +87,18 @@ src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
 <i class="ri-bookmark-line"></i>
 </div>
 
-<!-- Likes -->
-<h3 class="px-4 mt-2 text-sm font-semibold">245 likes</h3>
-
 <!-- Caption -->
 <h2 class="text-sm mt-1 px-4">
-<span class="font-semibold pr-2">rehan_dev</span>
-Beautiful sunset vibes 🌅
+<span class="font-semibold pr-2"><%= post.user.username %></span>
+<%= post.caption %>
 </h2>
 
 </div>
-
 </div>
+<% }) %>
+
 </div>
 
 </body>
 </html>
+

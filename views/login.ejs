@@ -2,20 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Instagram Auth UI</title>
+  <title>Instagram Authentication</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
-
 <div class="bg-white border w-80 p-8 text-center">
-
-  <h1 class="text-5xl mb-6" style="font-family:'Grand Hotel',cursive;">
-    Instagram
-  </h1>
-
-  <!-- LOGIN FORM -->
+  <h1 class="text-5xl mb-6" style="font-family:'Grand Hotel',cursive;">Instagram</h1>
   <form id="loginForm" class="space-y-3" action="/user/login" method="post">
     <input type="email" placeholder="Phone number, username or email" name="email"
       class="w-full border p-2 text-sm bg-gray-50 rounded">
@@ -25,8 +19,6 @@
 
     <input type="submit" class="w-full bg-blue-500 text-white py-2 rounded font-semibold text-center" value="Log in" >
        </form>
-
-  <!-- SIGNUP FORM -->
   <form id="signupForm" class="space-y-3 hidden">
     <input type="text" placeholder="Mobile Number or Email"
       class="w-full border p-2 text-sm bg-gray-50 rounded">
@@ -47,7 +39,6 @@
 
 </div>
 
-<!-- TOGGLE BOX -->
 <div class="bg-white border w-80 p-4 text-center mt-3 absolute bottom-10">
   <p id="toggleText">
     Don't have an account?
