@@ -12,10 +12,11 @@ media:{
 caption:{
     type:String,
 },
-like:{
+like:[{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"user"
-},
+    ref:"user",
+    default:0
+}],
 date:{
     type:Date,
     default:Date.now()

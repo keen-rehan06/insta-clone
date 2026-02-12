@@ -123,3 +123,15 @@ export const searchUsers = async (req,res) => {
   }).limit(10)
   res.json(users)
 }
+
+export const likePost = async (req,res) => {
+  const post = await postModel.findOne({_id:req.params.postid})
+  const user = await userModel.findOne({ _id: req.user});
+   if(post.like.indexOf(user._id) === -1){
+    post.like.push(user._id);
+   }else{
+    post.like.splice(post.like.indexOf(user._id),1);
+   }
+  await post.save()
+  res.redirect("/feed")
+} 
