@@ -5,9 +5,9 @@ const postSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"user"
     },
-image:{
+media:{
     type:String,
-    default:"India"
+    required:true
 },
 caption:{
     type:String,

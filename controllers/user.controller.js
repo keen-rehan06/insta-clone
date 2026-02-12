@@ -20,11 +20,9 @@ export const createUser = async (req, res) => {
       secure: true,
       sameSite: "none",
     });
-    res
-      .status(201)
-      .send({ message: "User created Successfully!", data: newUser });
+    res.redirect("/")
   } catch (error) {
-    res.status(500).send({ message: "Error", data: error });
+    res.status(500).send("User creating failed!");
   }
 };
 
@@ -43,7 +41,7 @@ export const loggedInUser = async (req, res) => {
         secure: true,
         sameSite: "none",
       });
-      res.render("profile");
+      res.redirect("/profile");
     });
   } catch (error) {
     res.status(500).send({ message: "Error", data: error });
@@ -57,7 +55,7 @@ export const logoutUser = async (req, res) => {
       secure: true,
       sameSite: "none",
     });
-    res.status(200).send({ message: "User Logout Successfully!!" });
+    res.redirect("/")
   } catch (error) {
     return res.send("Logout failed");
   }
@@ -68,19 +66,18 @@ export const createPost = async (req, res) => {
     console.log(req.user);
     console.log(req.file);
 
-    const {user,image,caption } = req.body;
+    const {user,media,caption } = req.body;
 
     const findUser = await userModel.findOne({ email: req.user.email });
     if (!findUser) return res.send("User not found");
 
     const createdPost = await postModel.create({
       user: findUser._id,
-      image: req.file.filename,
+      media: req.file.filename,
       caption,
     });
 
-    const posts = await postModel.find().populate("user");
-    res.render("feed", { createdPost} );
+  res.redirect("/feed")
 
   } catch (error) {
     console.log(error);
@@ -88,13 +85,30 @@ export const createPost = async (req, res) => {
   }
 };
 
-export const updateProfile = async(req,res) => {
-try {
-  const {picture,username,name} = req.body;
-  const newUser = {picture,username,name}
-  const user = await userModel.findOneAndUpdate({_id:req.user._id},newUser,{ new: true })
-  res.redirect("/profile")
-} catch (error) {
-  
-}  
-}
+export const updateProfile = async (req, res) => {
+  try {
+    const { username, name, bio } = req.body;
+
+    let updateData = {
+      username,
+      name,
+      bio
+    };
+
+    if (req.file) {
+      updateData.picture = req.file.filename;
+    }
+
+    await userModel.findByIdAndUpdate(
+      req.user._id,
+      updateData,
+      { new: true }
+    );
+
+    res.redirect("/profile");
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server Error");
+  }
+};

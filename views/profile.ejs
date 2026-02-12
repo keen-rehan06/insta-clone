@@ -18,17 +18,17 @@
 <div class="flex items-center gap-5 p-4">
 
 <div class="w-24 h-24 rounded-full overflow-hidden">
-<img src="/images/dp.jpg" class="w-full h-full object-cover">
+<img src="/images/<%= user.picture %>" class="w-full h-full object-cover">
 </div>
 
 <div class="flex-1">
 
 <div class="flex items-center gap-2">
-<h2 class="font-semibold text-lg">keen_rehan06</h2>
+<h2 class="font-semibold text-lg"><%= user.username %></h2> 
 <i class="ri-settings-3-line text-xl"></i>
 </div>
 
-<p class="text-sm">Rehan sheikh</p>
+<p class="text-sm"><%= user.name %></p>
 
 <div class="flex gap-4 text-sm mt-2">
 <p><span class="font-semibold">2</span> posts</p>
@@ -39,16 +39,14 @@
 </div>
 </div>
 <div class="px-4 text-sm">
-<p>19 ✨</p>
+<p><%= user.bio %></p>
 <p>@ keen_rehan06</p>
 </div>
 
 <div class="flex gap-2 px-4 mt-4">
 
 <a href="/edit" class="flex-1 bg-zinc-200 py-2 rounded-lg text-sm font-medium text-center">Edit profile</a>
-<button class="flex-1 bg-zinc-200 py-2 rounded-lg text-sm font-medium">
-Create Post
-</button>
+<a href="/post" class="flex-1 bg-zinc-200 py-2 rounded-lg text-sm font-medium text-center">Create Post</a>
 </div>
 
 <!-- HIGHLIGHTS -->

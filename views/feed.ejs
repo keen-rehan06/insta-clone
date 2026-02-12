@@ -64,7 +64,7 @@ src="https://images.unsplash.com/photo-1544005313-94ddf0286df2">
 src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
 </div>
 <div>
-<h4 class="text-sm font-semibold"><%= post.user.username %></h4>
+<h4 class="text-sm font-semibold"><%= post.user?.username %></h4>
 <h6 class="text-xs opacity-50">Nagpur, Maharashtra</h6>
 </div>
 </div>
@@ -85,7 +85,7 @@ src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
 <i class="ri-bookmark-line"></i>
 </div>
 <h2 class="text-sm mt-1 px-4">
-<span class="font-semibold pr-2"><%= post.user.username %></span>
+<span class="font-semibold pr-2">n</span>
 <%= post.caption %>
 </h2>
 

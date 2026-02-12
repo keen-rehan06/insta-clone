@@ -18,6 +18,9 @@ const userSchema = new mongoose.Schema({
       type:String,
         required:true
     },
+    bio:{
+        type:String
+    },
     date:{
         type:Date,
         default:Date.now()
@@ -31,9 +34,7 @@ const userSchema = new mongoose.Schema({
     contact:{
         type:String
     },
-    bio:{
-        type:String
-    },
+    
     saved:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"save"

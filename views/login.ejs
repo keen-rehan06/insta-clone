@@ -19,22 +19,20 @@
 
     <input type="submit" class="w-full bg-blue-500 text-white py-2 rounded font-semibold text-center" value="Log in" >
        </form>
-  <form id="signupForm" class="space-y-3 hidden">
+  <form id="signupForm" class="space-y-3 hidden" action="/user/create" method="post">
     <input type="text" placeholder="Mobile Number or Email"
-      class="w-full border p-2 text-sm bg-gray-50 rounded">
+      class="w-full border p-2 text-sm bg-gray-50 rounded" name="email">
 
     <input type="text" placeholder="Full Name"
-      class="w-full border p-2 text-sm bg-gray-50 rounded">
+      class="w-full border p-2 text-sm bg-gray-50 rounded" name="name">
 
     <input type="text" placeholder="Username"
-      class="w-full border p-2 text-sm bg-gray-50 rounded">
+      class="w-full border p-2 text-sm bg-gray-50 rounded" name="username">
 
     <input type="password" placeholder="Password"
-      class="w-full border p-2 text-sm bg-gray-50 rounded">
+      class="w-full border p-2 text-sm bg-gray-50 rounded" name="password">
 
-    <button class="w-full bg-blue-500 text-white py-2 rounded font-semibold">
-      Sign up
-    </button>
+    <input type="submit" class="w-full bg-blue-500 text-white py-2 rounded font-semibold text-center" value="Sign Up"/>
   </form>
 
 </div>

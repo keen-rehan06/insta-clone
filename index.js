@@ -9,6 +9,7 @@ import path from "path";
 import postModel from './models/post.model.js';
 import userRoute from "./routes/user.routes.js"
 import userModel from './models/user.model.js';
+import { isLoggedIn } from './middlewares/auth.middleware.js';
 
 (async()=>{
     try {
@@ -39,18 +40,20 @@ app.get("/feed", async (req, res) => {
    res.render("feed", { posts });
 });
 
-app.get("/profile",async(req,res)=>{
-    res.render("profile")
+app.get("/profile", isLoggedIn, async (req,res)=>{
+   const user = await userModel.findById(req.user._id);
+   res.render("profile",{ user });
+});
+
+app.get("/edit",isLoggedIn,async function(req,res){
+    const user = await userModel.findById(req.user._id);
+    res.render("editProfile",{user})
 })
 
-app.get("/edit",function(req,res){
-    res.render("editProfile")
+app.get("/post",isLoggedIn,async function(req,res) {
+    res.render("createPost")
 })
 
-app.get("/update",async function(req,res){
-    const user = await userModel.findById(req.user_id);
-     res.render("profile",{user});
-})
 
 app.listen(3000,function(){
     console.log("App is running on port 3000")
