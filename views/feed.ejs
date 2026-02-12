@@ -16,7 +16,7 @@
 <div class="w-full min-h-screen py-5">
 
 <div class="w-full px-4 flex items-center justify-between">
-<img class="w-28 bg-transparent" src="/images/insta.png">
+<img class="w-28 bg-transparent" src="/images/upload/insta.png">
 <div class="flex gap-5 text-2xl">
 <i class="ri-heart-3-line"></i>
 <i class="ri-messenger-line"></i>
@@ -61,7 +61,7 @@ src="https://images.unsplash.com/photo-1544005313-94ddf0286df2">
 <div class="px-4 flex items-center gap-3">
 <div class="w-10 h-10 rounded-full overflow-hidden">
 <img class="w-full h-full object-cover"
-src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
+src="/images/<%= post.user.picture %>">
 </div>
 <div>
 <h4 class="text-sm font-semibold"><%= post.user?.username %></h4>
@@ -71,7 +71,7 @@ src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
 <div class="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden">
   <div class="relative w-full aspect-square">
     <img 
-      src="/images/<%= post.image %>"
+      src="/images/<%= post.media %>"
       class="absolute inset-0 w-full h-full object-cover"
     />
   </div>
@@ -85,7 +85,7 @@ src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
 <i class="ri-bookmark-line"></i>
 </div>
 <h2 class="text-sm mt-1 px-4">
-<span class="font-semibold pr-2">n</span>
+<span class="font-semibold pr-2"></span>
 <%= post.caption %>
 </h2>
 
@@ -118,7 +118,31 @@ src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
 </div>
 </div>
 <% }) %>
+<div class="fixed bottom-0 left-0 right-0 w-full bg-black border-t border-zinc-800 z-[999]">
+  <div class="flex justify-around items-center py-3 text-2xl text-white">
 
+    <a href="/feed" class="active:scale-90 transition">
+      <i class="ri-home-5-line"></i>
+    </a>
+
+    <a href="/search" class="active:scale-90 transition">
+      <i class="ri-search-line"></i>
+    </a>
+
+    <a href="/create" class="active:scale-90 transition">
+      <i class="ri-add-box-line"></i>
+    </a>
+    <a href="/reels" class="active:scale-90 transition">
+      <i class="ri-video-line"></i>
+    </a>
+
+    <a href="/profile" class="active:scale-90 transition">
+      <div class="w-7 h-7 rounded-full overflow-hidden border border-zinc-600">
+        <img src="/images/<%= user.picture %>" class="w-full h-full object-cover">
+      </div>
+    </a>
+  </div>
+</div>
 </div>
 
 </body>

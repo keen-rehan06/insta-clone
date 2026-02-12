@@ -26,7 +26,8 @@ const userSchema = new mongoose.Schema({
         default:Date.now()
     },
     picture:{
-        type:String
+        type:String,
+        default:'user.png'
     },
     address:{
         type:String

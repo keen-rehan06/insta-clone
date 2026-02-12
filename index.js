@@ -34,14 +34,18 @@ app.use("/user",userRoute)
 
 app.get("/",function(req,res){
     res.render("login")
+    console.log(req.user)
 })
-app.get("/feed", async (req, res) => {
+
+app.get("/feed",isLoggedIn, async (req, res) => {
+    const user = await userModel.findById(req.user._id);
    const posts = await postModel.find().populate("user");
-   res.render("feed", { posts });
+   res.render("feed", { posts,user });
 });
 
-app.get("/profile", isLoggedIn, async (req,res)=>{
+app.get("/profile",isLoggedIn, async (req,res)=>{
    const user = await userModel.findById(req.user._id);
+    console.log(user)
    res.render("profile",{ user });
 });
 
@@ -54,7 +58,10 @@ app.get("/post",isLoggedIn,async function(req,res) {
     res.render("createPost")
 })
 
+app.get("/search",isLoggedIn,async function(req,res){
+    res.render("search");
+})
 
 app.listen(3000,function(){
-    console.log("App is running on port 3000")
+    console.log("App is running on port 3000");
 })
