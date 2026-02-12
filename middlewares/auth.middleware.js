@@ -17,9 +17,9 @@ export const userSignupMiddleware = async (req, res, next) => {
 
 export const userLoginMiddleware = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
-        if (!email || !password) return res.status(500).send({ message: "All fields are required!" });
-        const user = await userModel.findOne({ email })
+        const { username, password } = req.body;
+        if (!username || !password) return res.status(500).send({ message: "All fields are required!" });
+        const user = await userModel.findOne({ username })
         if (!user) return res.status(404).send({ message: "User not found!" });
         next();
     } catch (error) {

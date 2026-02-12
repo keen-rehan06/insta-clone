@@ -59,7 +59,9 @@ app.get("/post",isLoggedIn,async function(req,res) {
 })
 
 app.get("/search",isLoggedIn,async function(req,res){
-    res.render("search");
+    console.log(req.query.keyword)
+    const user = await userModel.findById(req.user._id);
+    res.render("search",{user});
 })
 
 app.listen(3000,function(){

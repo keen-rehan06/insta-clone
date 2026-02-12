@@ -1,45 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
-</head>
-<body class="w-full h-full bg-black">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Instagram Search Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="w-full h-full bg-black">
+    <div class="max-w-md mx-auto min-h-screen">
+      <div class="p-3 sticky top-0 bg-black border-b border-zinc-800 z-50">
+        <input
+          type="text"
+          id="searchBox"
+          placeholder="Search"
+          class="w-full bg-zinc-900 rounded-lg px-4 py-2 outline-none text-white"
+        />
+      </div>
 
-<div class="max-w-md mx-auto text-white min-h-screen">
+      <div class="p-3 text-white">
+        <h2 class="text-sm font-semibold mb-2">Recent</h2>
+        <div id="results" class="mt-4"></div>
+      </div>
 
-  <!-- 🔎 Search Bar -->
-  <div class="p-3 sticky top-0 bg-black border-b border-zinc-800">
-    <input 
-      type="text" 
-      placeholder="Search"
-      class="w-full bg-zinc-900 rounded-lg px-4 py-2 outline-none"
-    >
-  </div>
+      <div
+        class="fixed bottom-0 left-0 right-0 w-full bg-black border-t border-zinc-800 z-[999]"
+      >
+        <div class="flex justify-around items-center py-3 text-2xl text-white">
+          <a href="/feed" class="active:scale-90 transition">
+            <i class="ri-home-5-line"></i>
+          </a>
 
-  <div class="p-3">
-    <h2 class="text-sm font-semibold mb-2">Recent</h2>
+          <a href="/search" class="active:scale-90 transition">
+            <i class="ri-search-line"></i>
+          </a>
 
-    <div class="flex items-center gap-3 py-2">
-      <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full">
-      <p>john_doe</p>
+          <a href="/create" class="active:scale-90 transition">
+            <i class="ri-add-box-line"></i>
+          </a>
+
+          <a href="/reels" class="active:scale-90 transition">
+            <i class="ri-video-line"></i>
+          </a>
+
+          <a href="/profile" class="active:scale-90 transition">
+            <div
+              class="w-7 h-7 rounded-full overflow-hidden border border-zinc-600"
+            >
+              <img
+                src="/images/<%= user.picture %>"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
 
-    <div class="flex items-center gap-3 py-2">
-      <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full">
-      <p>rahul_07</p>
-    </div>
+    <script>
+      const input = document.getElementById("searchBox");
+      const results = document.getElementById("results");
+      input.addEventListener("input", () => {
+        const keyword = input.value;
 
-    <div class="flex items-center gap-3 py-2">
-      <img src="https://via.placeholder.com/40" class="w-10 h-10 rounded-full">
-      <p>neha.x</p>
-    </div>
-  </div>
-</div>
+        if (keyword.trim() === "") {
+          results.innerHTML = "";
+          return;
+        }
 
-</body>
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/user/search", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onload = function () {
+          if (this.status === 200) {
+            const users = JSON.parse(this.responseText);
+
+            results.innerHTML = "";
+
+            users.forEach((user) => {
+              const div = document.createElement("div");
+              div.className =
+                "flex items-start gap-3 py-2 hover:bg-zinc-800 px-2 rounded-lg cursor-pointer";
+              const img = document.createElement("img");
+              img.src = user.picture
+                ? `/images/${user.picture}`
+                : "/images/user.png";
+              img.className = "w-[50px] h-[50px] rounded-full";
+              const textDiv = document.createElement("div");
+              textDiv.className = "flex flex-col";
+              const username = document.createElement("h2");
+              username.className = "text-white font-semibold";
+              username.textContent = user.username;
+              const fullname = document.createElement("p");
+              fullname.className = "text-gray-400 text-sm";
+              fullname.textContent = user.name;
+              textDiv.appendChild(username);
+              textDiv.appendChild(fullname);
+              div.appendChild(img);
+              div.appendChild(textDiv);
+              results.appendChild(div);
+            });
+          }
+        };
+
+        xhr.send(JSON.stringify({ keyword }));
+      });
+    </script>
+  </body>
 </html>

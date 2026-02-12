@@ -28,13 +28,13 @@ export const createUser = async (req, res) => {
 
 export const loggedInUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await userModel.findOne({ email });
+    const { username, password } = req.body;
+    const user = await userModel.findOne({ username });
     const newUser = await userModel.findById(user._id).select("-password");
     bcrypt.compare(password, user.password, function (err, result) {
       if (err) return res.status(402).send("Something went wrong Error:", err);
       if (!result)
-        return res.status(402).send({ message: "Incorrect Password!" });
+      return res.status(402).send({ message: "Incorrect Password!" });
       const token = generateToken(user);
       res.cookie("token", token, {
         httpOnly: true,
@@ -112,3 +112,14 @@ export const updateProfile = async (req, res) => {
     res.status(500).send("Server Error");
   }
 };
+
+export const searchUsers = async (req,res) => {
+  const keyword = req.body.keyword || "";
+  const regexPattern =  keyword.split("")               
+  .map(c => c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+  .join(".*");  
+  const users = await userModel.find({
+    username:{$regex:keyword,$options:"i"}
+  }).limit(10)
+  res.json(users)
+}

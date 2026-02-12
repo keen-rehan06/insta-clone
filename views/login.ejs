@@ -11,13 +11,12 @@
 <div class="bg-white border w-80 p-8 text-center">
   <h1 class="text-5xl mb-6" style="font-family:'Grand Hotel',cursive;">Instagram</h1>
   <form id="loginForm" class="space-y-3" action="/user/login" method="post">
-    <input type="email" placeholder="Phone number, username or email" name="email"
+    <input type="text" placeholder="Phone number, username or email" name="username"
       class="w-full border p-2 text-sm bg-gray-50 rounded">
-
     <input type="password" placeholder="Password" name="password"
       class="w-full border p-2 text-sm bg-gray-50 rounded">
 
-    <input type="submit" class="w-full bg-blue-500 text-white py-2 rounded font-semibold text-center" value="Log in" >
+    <input type="submit" class= "w-full bg-blue-500 text-white py-2 rounded font-semibold text-center" value="Log in" >
        </form>
   <form id="signupForm" class="space-y-3 hidden" action="/user/create" method="post">
     <input type="text" placeholder="Mobile Number or Email"
