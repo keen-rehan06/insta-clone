@@ -10,6 +10,7 @@ import postModel from './models/post.model.js';
 import userRoute from "./routes/user.routes.js"
 import userModel from './models/user.model.js';
 import { isLoggedIn } from './middlewares/auth.middleware.js';
+import timeAgo from './time.js';
 
 (async()=>{
     try {
@@ -40,7 +41,7 @@ app.get("/",function(req,res){
 app.get("/feed",isLoggedIn, async (req, res) => {
     const user = await userModel.findById(req.user._id);
    const posts = await postModel.find().populate("user");
-   res.render("feed", { posts,user });
+   res.render("feed", { posts,user, timeAgo});
 });
 
 app.get("/profile",isLoggedIn, async (req,res)=>{
